@@ -169,3 +169,71 @@ console.table(Pedido)
 delete Pedido.TipoPago
 console.log("Despues de la modificación...")
 console.table(Pedido)
+
+//
+console.log("%c7.- Metodos para controlar la mutabilidad de los objetos , congelacion (freezer)", style_console);
+// si deseamos no permitir que los objetos sean multiplicadosni en en estructura , ni en valor , utilizamos el metodo freeze (congelar)
+console.log(`la estructura actual del objeto comprador es :`)
+console.table(Comprador)
+Object.freeze(Comprador)
+// intentamos agregar , eliminar o modificar los valores de su propiedaedes
+Comprador.FechaUltimaCompra="05/09/2024 10:15:25"
+delete Comprador.Tipo;
+Comprador.Dirección="calle 16 de septiembre #102 , col. manantiales, huachinango,puebla,mexico";
+console.log(`Verificamos si se realizaron los cambios en el objeto COMPRADOR :`)
+console.table(Comprador)
+
+console.log("%c8.- Metodos para controlar la mutabilidad de los Objetos, sellado(SEAL))", style_console);
+//Sin embargo , en el caso que deseamos poder modificar los valores del las propiedades del objetos ,pero no su estructura usaremos SEAL
+console.log("Objeto antes de ser modificado:")
+console.table(Pedido)
+// sellamos el objeto
+Object.seal(Pedido)
+// intentamos modificar su estructura
+Pedido[`FechaPedido`]="25/09/2024 11;05;03"
+delete Pedido[`Cantidad`]
+console.log(`verificamos si se realizaron los cambios en el Objeto PEDIDO:`)
+console.table(Pedido)
+// ahora intentamos modificar el valor de las propiedades
+Pedido.Cantidad=5
+console.log(`Verificamos si se realizaron los cambios en el objeto pedido:`)
+
+console.log("%c9.- Destructuracion de 2 o mas objrtos)", style_console);
+
+let{Precio: ProductoPrecio, marca: ProductoMarca}=Producto
+let {correo:clienteCorreo, PaisOrigen:clientePais,SaldoActual:clienteSaldo, tipo:clientetipo}=Comprador
+
+//transformar valores cuantitativos en cualitativos
+if(ProductoPrecio>2000)
+    ProductoPrecio="caro"
+else 
+    ProductoPrecio="Barato"
+
+if(ProductoPrecio>0)
+    ProductoPrecio="A favor"
+else if(clienteSaldo<0)
+    ProductoPrecio="en contra"
+else
+    clienteSaldo="sin deuda"
+
+    //'transformar valores cualitativos en cuantitativos
+
+let clienteNivel;
+
+if(clientetipo=="premium")
+    clienteNivel=1
+if(clientetipo=="Freepremium")
+    clienteNivel=2
+if(clientetipo=="No identificado")
+    clienteNivel=3
+
+//clasificamos al cliente por su pais de origen
+if(clientePais=="Mexico")
+    clientePais="Nacional"
+else
+    clientePais="Extranjero"
+
+console.log("imnprimimos la estructura y valores del objeto")
+console.table(Producto);
+
+concole.log("imprimimos")
