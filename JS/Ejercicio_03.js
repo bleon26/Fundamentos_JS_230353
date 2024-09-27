@@ -171,69 +171,142 @@ console.log("Despues de la modificación...")
 console.table(Pedido)
 
 //
-console.log("%c7.- Metodos para controlar la mutabilidad de los objetos , congelacion (freezer)", style_console);
-// si deseamos no permitir que los objetos sean multiplicadosni en en estructura , ni en valor , utilizamos el metodo freeze (congelar)
-console.log(`la estructura actual del objeto comprador es :`)
+console.log("%c7.- Metodos para controlar la mutabilidad de objetos, Congelación (FREEZE) ", style_console);
+//Si deseamos no permitir que los objetos sean modificados ni en estructura, ni en valor, utilizamos el metodo FREEZE (congelar)
+
+console.log(`La estrucutra actual del Objeto COMPRADOR es: `)
 console.table(Comprador)
 Object.freeze(Comprador)
-// intentamos agregar , eliminar o modificar los valores de su propiedaedes
+
 Comprador.FechaUltimaCompra="05/09/2024 10:15:25"
 delete Comprador.Tipo;
-Comprador.Dirección="calle 16 de septiembre #102 , col. manantiales, huachinango,puebla,mexico";
-console.log(`Verificamos si se realizaron los cambios en el objeto COMPRADOR :`)
+Comprador.Dirección= "Calle 16 de Septiembre #102, Col. Manantiales, Huauchinango, Puebla, México";
+console.log(`Verificamos si se realizaron los cambios en el Objeto COMPRADOR:`)
 console.table(Comprador)
 
-console.log("%c8.- Metodos para controlar la mutabilidad de los Objetos, sellado(SEAL))", style_console);
-//Sin embargo , en el caso que deseamos poder modificar los valores del las propiedades del objetos ,pero no su estructura usaremos SEAL
-console.log("Objeto antes de ser modificado:")
+//
+console.log("%c8.- Metodos para controlar la mutabilidad de objetos, Sellado (SEAL) ", style_console);
+//Sin embargo, en el caso que deseemos poder modificar los vaLores del las porpiedades del Objeto, pero no su estructura, usaremos SEAL
+console.log("Objeto antes de ser modificado: ")
 console.table(Pedido)
-// sellamos el objeto
+//Sellamos el objeto
 Object.seal(Pedido)
-// intentamos modificar su estructura
-Pedido[`FechaPedido`]="25/09/2024 11;05;03"
-delete Pedido[`Cantidad`]
-console.log(`verificamos si se realizaron los cambios en el Objeto PEDIDO:`)
+//Intentamos modificar su estructura
+Pedido['FechaPedido']= "25/09/2024 11:05:03"
+delete Pedido['Cantidad']
+console.log(`Verificamos si se realizaron los cambios en el Objeto PEDIDO:`)
 console.table(Pedido)
-// ahora intentamos modificar el valor de las propiedades
+//Ahora intentamos modificar el valor de las propiedades
 Pedido.Cantidad=5
-console.log(`Verificamos si se realizaron los cambios en el objeto pedido:`)
+console.log('Verificamos si se realizaron los cambios en el Objeto PEDIDO:')
+console.table(Pedido)
 
-console.log("%c9.- Destructuracion de 2 o mas objrtos)", style_console);
 
-let{Precio: ProductoPrecio, marca: ProductoMarca}=Producto
-let {correo:clienteCorreo, PaisOrigen:clientePais,SaldoActual:clienteSaldo, tipo:clientetipo}=Comprador
+//Desestructuración de 2 o más objetos
+console.log("%c9.- Desestructuración de 2 o más objetos", style_console);
 
-//transformar valores cuantitativos en cualitativos
-if(ProductoPrecio>2000)
-    ProductoPrecio="caro"
-else 
-    ProductoPrecio="Barato"
+let{Precio: productoPrecio, Marca: productoMarca}= Producto
+let{Correo: clienteCorreo, PaisOrigen: clientePais, SaldoActual: clienteSaldo, Tipo: clienteTipo}=Comprador
 
-if(ProductoPrecio>0)
-    ProductoPrecio="A favor"
-else if(clienteSaldo<0)
-    ProductoPrecio="en contra"
+
+//Transformar valores cuantitativos en cualitativos
+if(productoPrecio>2000)
+    productoPrecio="Caro"
 else
-    clienteSaldo="sin deuda"
+    productoPrecio= "Barato"
 
-    //'transformar valores cualitativos en cuantitativos
 
+if(clienteSaldo>0)
+    clienteSaldo="A favor"
+else if(clienteSaldo<0)
+    clienteSaldo= "En contra"
+else
+    clienteSaldo="Sin deuda"
+
+//Transformar valores cualitativos en cuantitativos
 let clienteNivel;
 
-if(clientetipo=="premium")
+if(clienteTipo=="Premium")
     clienteNivel=1
-if(clientetipo=="Freepremium")
+if(clienteTipo=="Freemium")
     clienteNivel=2
-if(clientetipo=="No identificado")
+if(clienteTipo=="No identificado")
     clienteNivel=3
 
-//clasificamos al cliente por su pais de origen
-if(clientePais=="Mexico")
-    clientePais="Nacional"
+
+if(clientePais== "México")
+    clientePais= "Nacional"
 else
     clientePais="Extranjero"
 
-console.log("imnprimimos la estructura y valores del objeto")
+
+
+
+// OLE - Object Literal Enhacement
+
+let datosClientePromociones={clienteCorreo, clientePais, clienteNivel, clienteSaldo, productoMarca, productoPrecio}
+
+//el nuevo objeto que creamos sería un ejemplo de la información que enviariamos al area de Marketing para la difusión de promociones.
+console.log("Los datos del cliente y sus hábitos de compra son: ")
+console.table(datosClientePromociones)
+
+
+console.log("%c10.- Unión de Objetos usando el método de asignación (ASSING)", style_console);
+//
+console.log("Imprimimos la estructura y valores del objeto PRODUCTO")
 console.table(Producto);
 
-concole.log("imprimimos")
+console.log("Imprimimos la estructura y valores del objeto PEDIDO")
+console.table(Pedido);
+//Suponiendo que el usuario ya realizo el pago, el pedido se convertira en una VENTA que requiere información de ambos objetos
+
+let Producto3 = {...Producto}
+const Venta = Object.assign(Producto3, Pedido);
+console.log("Consultamos este nuevo objeto VENTA")
+console.table(Venta);
+
+// Unión de Objetos usando SPREAD OPERATOR para evitar la perdida de información con objetos que comparten el mismo nombre en sus propiedades
+console.log("%c11.- Unión de Objetos usando  el SPREAD OPERATOR (...)", style_console);
+
+
+// Parchamos el error, reiniciando el valor del producto ID al original
+//Producto.ID=100;
+
+console.table(Producto)
+console.table(Comprador)
+console.table(Pedido)
+
+const Venta2 = 
+{
+    producto: {...Producto},
+    comprador:{...Comprador},
+    pedido:{...Pedido}
+}                 
+console.log("Fusionamos los 3 objetos en uno nuevo, sin perdida de información")
+console.log(Venta2)
+console.table(Venta2)
+
+
+
+
+console.log("%c12.- Mutabilidad POST Unión de Objetos", style_console);
+
+
+
+// Vamos a verificar el estatus de mutabilidad de los obetos
+console.log("Vamos a verificar el estatus de mutabilidad del objeto PEDIDO")
+console.log(`Esta el objeto de Pedido Congelado ? : ${Object.isFrozen(Pedido)}` );
+console.log(`Esta el objeto de Pedido Sellado? : ${Object.isSealed(Pedido)}` );
+
+console.log("Vamos a verificar el estatus de mutabilidad del objeto COMPRADOR")
+console.log(`Esta el objeto de Pedido Congelado ? : ${Object.isFrozen(Comprador)}` );
+console.log(`Esta el objeto de Pedido Sellado? : ${Object.isSealed(Comprador)}` );
+
+console.log("Vamos a verificar el estatus de mutabilidad del objeto PRODUCTO")
+console.log(`Esta el objeto de Pedido Congelado ? : ${Object.isFrozen(Producto)}` );
+console.log(`Esta el objeto de Pedido Sellado? : ${Object.isSealed(Producto)}` );
+
+// Modificamos la estructura de producto, agregando una nueva propiedad
+Producto['isLegacy']=false;
+console.log(Producto)
+console.log(Venta2);
