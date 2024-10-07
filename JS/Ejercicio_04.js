@@ -207,4 +207,38 @@ console.log(`El tercer signo zodiacal es : ${signo3}`)
 //console.log(`El septimo signo zodiacal es : ${signo4}`)
 console.log(`El septimo signo zodiacal es : ${signo7}`)
 
-object.freeze(signosZodiacales)
+//object.freeze(signosZodiacales);
+
+
+console.log("%c11.- Filtrado de elemento dentro de un arreglo utilizando el metodo FILTER ", style_console);
+console.table(estudiantes);
+
+estudiantes.push("Angel Rufino");
+estudiantes.push("Esther Gonzales");
+estudiantes.push("Lorena Galindo");
+estudiantes.push("Jonathan Ramirez");
+estudiantes.push("Ailton Arriaga");
+estudiantes.push("Tania Ibarra");
+console.table(estudiantes);
+
+object.freeze(estudiantes);
+
+// este filter es un metodo que recorre los elementos de un arreglo haciendo algunos tareas en especifico
+
+console.log("filtrando los primeros 5 elementos")
+let Nuevoestudaintes=estudiantes.filter((estudiante,index)=>index<5);
+console.table(Nuevoestudaintes)
+
+//estudiantes.pop();
+//console.table(estudiantes);
+
+Nuevoestudaintes.unshift("Diego Tecorralco");
+console.table(Nuevoestudaintes);
+
+function filterPrimeros(estudiantes){
+    let listafiltrada = []
+    for (let i=0; i<5; i++){
+        listafiltrada.push(estudiantes[i]);
+    }
+    return listafiltrada;
+}
