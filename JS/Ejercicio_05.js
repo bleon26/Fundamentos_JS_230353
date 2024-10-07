@@ -8,4 +8,41 @@ console.warn("Prática 07: Arreglos en Java Script")
 console.log("%c1.- Sí/Entonces ... (IF)", style_console);
 //Le indica al programa que hacer o que no en base a una prueba lógica de verdadero o falso
 let fechaActual = new Date();
-console.log
+console.log(`Hola, la fecha de hoy es ${fechaActual.toString()}`);
+
+//y si la necesitamos en formato local?
+const fechaLocalMX = fechaActual.toLocaleDateString(`es-MX`,
+    {
+        weekday: `long`,
+        year: `numeric`,
+        month: `long`,
+        day: `numeric`,
+        hour: `numeric`,
+        minute: `numeric`,
+        second: `numeric`,
+        hour12: `false`
+    }
+);
+
+console.log(`en formato local (México): ${fechaLocalMX}`);
+
+// Si es antes de las doce saluda con un buenos días
+if(fechaActual.getHours()<12)
+    console.log(`Buenos días, hoy es:${fechaLocalMX}`);
+
+// Existe un extensor de la sentencia if(sí) que es else (en caso contrario)
+if(fechaActual.getMonth()<=6)
+    console.log(`Estas en la primer mitad del año.`);
+else
+   console.log(`estas en la segunda mitad del año.`);
+
+//Que pasa si la validación tiene varias operaciones
+const anio = fechaActual.getFullYear();
+let inicioPrimavera = new Date(anio,2,21);
+let inicioVerano = new Date(anio,5,21);
+let inicioOtonio = new Date(anio,8,23);
+let inicioInvierno = new Date(anio,11,21);
+
+if(fechaActual>=inicioPrimavera||fechaActual<inicioVerano){
+    console.log("Estamos en primavera")
+}
