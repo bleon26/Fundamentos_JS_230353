@@ -7,12 +7,13 @@ Previo a iniciar el desarrollo de software para web usando el framework de NodeJ
 
 ### Historial de practicas
 
-|No.| Descripcion|Potenciador| Estatus|
-|---|---|---|---|
-|1.| Metodologia de Evaluacion|1| Finalizacion ✅ |
-|2.| Inicializacion del Proyecto Fundamentos de JS|8| Finalizada ✅|
-|3.| Ejercicio 01:Declaracion de variables |6|Finalizada ✅|
-|4.| Ejercicio 02:Tipos de datos (Undefined,Boolean,Number,String,Bigint,Symbol,Null,Fuction)|10|Activa|
+|No. |Descripción|Potenciador|Estatus|
+|--|--|--|--|
+|1.|Metodología de Evaluación|1|✅Finalizada|
+|2.| Inicialización del Proyecto de Fundamentos de JS|8|✅Finalizada|
+|3.| Ejercicio 01: Declaración de Variables en JS6-|6|✅Finalizada|
+|4.| Ejercicio 02: Declaración de Variables (Undefined/Boolean/Number/String/BigInt/Symbol/Null/Function)|10|✅Finalizada|
+|5.|Ejercicio 03: Repaso de Objetos|--|Activa|
 
 ### Autor 
 Brandon Leon Cabrera
