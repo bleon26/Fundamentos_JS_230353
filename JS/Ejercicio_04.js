@@ -201,44 +201,78 @@ console.log("%c10.- Metodos para la manipulacion de arreglos INMUTABLES", style_
 
 let signosZodiacales=["Aries","Tauro","Geminis","Cancer","Leo","virgo","Libra","Escorpion","Sagitario","Capricornio","Acuario","Picis"]
 
-let [signo1,,signo3,,,,signo7,,,,,] = signosZodiacales;
-console.log(`El primer signo zodiacal es : ${signo1}`)
-console.log(`El tercer signo zodiacal es : ${signo3}`)
-//console.log(`El septimo signo zodiacal es : ${signo4}`)
-console.log(`El septimo signo zodiacal es : ${signo7}`)
+let [signo1,,signo3,,,,signo7,,,,,]=signosZodiacales;
+console.log(`El primer signo zodiacal es: ${signo1}`)
+console.log(`El primer signo zodiacal es: ${signo3}`)
+console.log(`El primer signo zodiacal es: ${signo7}`)
+//console.log(`El primer signo zodiacal es: ${signo4}`)
 
-//object.freeze(signosZodiacales);
+//congelamos el arreglo volviendolo INMUTABLE; 
+Object.freeze(signosZodiacales);
 
 
-console.log("%c11.- Filtrado de elemento dentro de un arreglo utilizando el metodo FILTER ", style_console);
-console.table(estudiantes);
 
-estudiantes.push("Angel Rufino");
-estudiantes.push("Esther Gonzales");
+// Filtrado de Datos
+console.log("%c11.- Filtrado de Elemento dentro de un arreglo utilizando el método FILTER",  style_console);
+
+//antes de filtrar datos llenemos el arreglo con 10 elementos
+estudiantes.push("Ángel Rufino");
+estudiantes.push("Esther González");
 estudiantes.push("Lorena Galindo");
-estudiantes.push("Jonathan Ramirez");
-estudiantes.push("Ailton Arriaga");
+estudiantes.push("Jonathan Ramírez");
+estudiantes.push("Ailton Artiaga");
 estudiantes.push("Tania Ibarra");
 console.table(estudiantes);
 
-object.freeze(estudiantes);
+Object.freeze(estudiantes);
 
-// este filter es un metodo que recorre los elementos de un arreglo haciendo algunos tareas en especifico
+//Filter es un método que recorre los elementos de un arreglo haciendo alguna tarea en específico, lo que tenemos que considerar es que este nuevo arreglo resultante es un objeto nuevo que puede ser mutable
 
-console.log("filtrando los primeros 5 elementos")
-let Nuevoestudaintes=estudiantes.filter((estudiante,index)=>index<5);
-console.table(Nuevoestudaintes)
+console.log("Filtrando los primeros 5 elementos");
+let nuevoEstudiantes = estudiantes.filter((estudiante,index) => index<5);
+console.table(nuevoEstudiantes);
+console.table(filtaPrimeros5(estudiantes));
 
-//estudiantes.pop();
-//console.table(estudiantes);
 
-Nuevoestudaintes.unshift("Diego Tecorralco");
-console.table(Nuevoestudaintes);
+// filtrar a los estudiantes que su nombre tenga mas de 15 carácteres
+let nuevoEstudiantesNombre = estudiantes.filter((estudiante) => estudiante.length>15);
+console.table(nuevoEstudiantesNombre);
 
-function filterPrimeros(estudiantes){
-    let listafiltrada = []
-    for (let i=0; i<5; i++){
-        listafiltrada.push(estudiantes[i]);
+
+
+//Intentamos modificar el arreglo inmutable
+/*estudiantes.pop();
+console.table(estudiantes);*/
+
+//Intenmos modificar el nuevo arreglo que no ha sido congelado
+nuevoEstudiantes.unshift("Diego Tecorralco");
+console.table(nuevoEstudiantes);
+
+
+function filtaPrimeros5(arregloEstudiantes)
+{
+    let listaFiltrada =[]
+    for(let i=0; i<5; i++)
+    {
+        listaFiltrada.push(arregloEstudiantes[i]);
+ 
     }
-    return listafiltrada;
-}
+ return listaFiltrada;
+ }
+
+
+ // Filtrado de Datos  -  Transformando los datos
+console.log("%c12.- Filtrado de Elementos dentro de un arreglo utilizando el método MAP, en el que necesitemos transformarlos",  style_console);
+console.log("Imprimimos los elementos actuales de signosZodiacales:")
+console.table(signosZodiacales);
+//Que podemos hacer si necesitamos el mismo arreglo pero ahora con todos sus elementos con letras MAYÚSCULAS
+console.table(signosZodiacales.map(signoZodiacal=> signoZodiacal.toUpperCase()));
+
+
+//Reducción de elementos de un arreglo, se usa cuando debemos hacer operaciones matemáticas o cuantitativas a un arreglo, como obtener totales, la idea es reducir la lista a un valor más simplificado.
+
+const costosListaCompras = [15,52.50,16.90,32.50,28,105,45.2,94.10]
+//Cómo podemos calcular el total de una lista de costos de un carrito de compras
+console.log("Los precios son:")
+console.table(costosListaCompras)
+console.log(`El total de la compra es: ${costosListaCompras.reduce((total, precio)=> total+precio,0).toFixed(2)}`)
